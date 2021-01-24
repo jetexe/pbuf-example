@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "messages/message.proto";
+
+package services;
+option go_package = "github.com/korjavin/pbuf-example/services;services";
+
+message Directs {
+  repeated messages.Direct direct = 1;
+}
+
+message Account {
+  string account = 1;
+}
+
+service MessagesAPI {
+  rpc GetDirectMessages(Account) returns (Directs) {}
+  rpc SendDirectMessages(messages.Direct) returns (google.protobuf.Empty) {}
+  //TODO
+  //rpc SubscribeDirectMessages(Account) returns (stream messages.Direct) {}
+}
+
