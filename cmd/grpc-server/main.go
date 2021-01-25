@@ -9,8 +9,8 @@ import (
 	empty "github.com/golang/protobuf/ptypes/empty"
 	"google.golang.org/grpc"
 
-	"github.com/korjavin/pbuf-example/messages"
-	"github.com/korjavin/pbuf-example/services"
+	"github.com/jetexe/pbuf-example/api/messages"
+	"github.com/jetexe/pbuf-example/api/services"
 )
 
 type Server struct {

@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	messages "github.com/korjavin/pbuf-example/messages"
+	messages "github.com/jetexe/pbuf-example/api/messages"
 	"google.golang.org/protobuf/proto"
 )
 
