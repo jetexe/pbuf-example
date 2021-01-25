@@ -16,40 +16,40 @@
 - Хранение сообщений in-memory, сериализация state в protobuf для persistence.
 ```
 
-[badge_report]:https://goreportcard.com/badge/github.com/jetexe/twitting
+[badge_report]:https://goreportcard.com/badge/github.com/jetexe/pbuf-example
 
-[badge_build]:https://img.shields.io/github/workflow/status/jetexe/twitting/tests?maxAge=30
+[badge_build]:https://img.shields.io/github/workflow/status/jetexe/pbuf-example/tests?maxAge=30
 
-[badge_coverage]:https://img.shields.io/codecov/c/github/jetexe/twitting/main.svg?maxAge=30
+[badge_coverage]:https://img.shields.io/codecov/c/github/jetexe/pbuf-example/main.svg?maxAge=30
 
-[badge_release_version]:https://img.shields.io/github/release/jetexe/twitting.svg?maxAge=30
+[badge_release_version]:https://img.shields.io/github/release/jetexe/pbuf-example.svg?maxAge=30
 
-[badge_license]:https://img.shields.io/github/license/jetexe/twitting.svg?longCache=true
+[badge_license]:https://img.shields.io/github/license/jetexe/pbuf-example.svg?longCache=true
 
-[badge_release_date]:https://img.shields.io/github/release-date/jetexe/twitting.svg?maxAge=180
+[badge_release_date]:https://img.shields.io/github/release-date/jetexe/pbuf-example.svg?maxAge=180
 
-[badge_commits_since_release]:https://img.shields.io/github/commits-since/jetexe/twitting/latest.svg?maxAge=45
+[badge_commits_since_release]:https://img.shields.io/github/commits-since/jetexe/pbuf-example/latest.svg?maxAge=45
 
-[badge_issues]:https://img.shields.io/github/issues/jetexe/twitting.svg?maxAge=45
+[badge_issues]:https://img.shields.io/github/issues/jetexe/pbuf-example.svg?maxAge=45
 
-[badge_pulls]:https://img.shields.io/github/issues-pr/jetexe/twitting.svg?maxAge=45
+[badge_pulls]:https://img.shields.io/github/issues-pr/jetexe/pbuf-example.svg?maxAge=45
 
-[link_report]:https://goreportcard.com/report/github.com/jetexe/twitting
+[link_report]:https://goreportcard.com/report/github.com/jetexe/pbuf-example
 
-[link_coverage]:https://codecov.io/gh/jetexe/twitting
+[link_coverage]:https://codecov.io/gh/jetexe/pbuf-example
 
-[link_build]:https://github.com/jetexe/twitting/actions
+[link_build]:https://github.com/jetexe/pbuf-example/actions
 
-[link_license]:https://github.com/jetexe/twitting/blob/main/LICENSE
+[link_license]:https://github.com/jetexe/pbuf-example/blob/main/LICENSE
 
-[link_releases]:https://github.com/jetexe/twitting/releases
+[link_releases]:https://github.com/jetexe/pbuf-example/releases
 
-[link_commits]:https://github.com/jetexe/twitting/commits
+[link_commits]:https://github.com/jetexe/pbuf-example/commits
 
-[link_changes_log]:https://github.com/jetexe/twitting/blob/main/CHANGELOG.md
+[link_changes_log]:https://github.com/jetexe/pbuf-example/blob/main/CHANGELOG.md
 
-[link_issues]:https://github.com/jetexe/twitting/issues
+[link_issues]:https://github.com/jetexe/pbuf-example/issues
 
-[link_create_issue]:https://github.com/jetexe/twitting/issues/new/choose
+[link_create_issue]:https://github.com/jetexe/pbuf-example/issues/new/choose
 
-[link_pulls]:https://github.com/jetexe/twitting/pulls
+[link_pulls]:https://github.com/jetexe/pbuf-example/pulls

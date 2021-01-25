@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"os"
 
+	"github.com/jetexe/pbuf-example/internal/pkg/breaker"
 	"google.golang.org/grpc"
 
 	"github.com/jetexe/pbuf-example/internal/pkg/grpc/messages/v1"
@@ -76,7 +78,18 @@ func main() {
 	grpcServer := grpc.NewServer(opts...)
 	services.RegisterMessagesAPIServiceServer(grpcServer, NewServer())
 
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+
+	br := breaker.NewOSSignals(ctx)
+	br.Subscribe(func(sig os.Signal) {
+		log.Println("OS signal:", sig)
+
+		grpcServer.Stop()
+		cancel()
+	})
+
 	if err := grpcServer.Serve(lis); err != nil {
-		log.Fatal(err)
+		log.Println("serve error", err)
 	}
 }

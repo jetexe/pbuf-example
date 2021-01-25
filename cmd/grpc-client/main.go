@@ -5,7 +5,7 @@ import (
 	"log"
 
 	"github.com/jetexe/pbuf-example/internal/pkg/grpc/messages/v1"
-	services "github.com/jetexe/pbuf-example/internal/pkg/grpc/services/v1"
+	"github.com/jetexe/pbuf-example/internal/pkg/grpc/services/v1"
 	"google.golang.org/grpc"
 )
 
