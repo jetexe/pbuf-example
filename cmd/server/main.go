@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	messages "github.com/jetexe/pbuf-example/api/messages"
+	"github.com/jetexe/pbuf-example/internal/pkg/grpc/messages/v1"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -15,17 +15,18 @@ func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		var m messages.Direct
+
 		hexMsg := scanner.Bytes()
 		msg := make([]byte, hex.DecodedLen(len(hexMsg)))
-		_, err := hex.Decode(msg, hexMsg)
-		if err != nil {
+
+		if _, err := hex.Decode(msg, hexMsg); err != nil {
 			log.Fatalf("[FATAL]  %v", err)
 		}
 
-		err = proto.Unmarshal(msg, &m)
-		if err != nil {
+		if err := proto.Unmarshal(msg, &m); err != nil {
 			log.Fatalf("[FATAL]  %v", err)
 		}
+
 		fmt.Printf("Account=%s, Text=%s\n", m.Account, m.Text)
 	}
 

@@ -3,28 +3,28 @@ syntax = "proto3";
 import "messages/v1/text.proto";
 
 package state.v1;
-option go_package = "pbuf-example/state;state";
+option go_package = "github.com/jetexe/pbuf-example/internal/pkg/grpc/state/v1;state";
 
 message State{
-  map<string, ListOfPosts> posts = 1; // key = account
-  repeated messages.v1.Text scheduled_messages = 2;
-  map<string, ListOfDirects> direct_messages = 3; //key = accountTO
+    map<string, ListOfPosts> posts = 1; // key = account
+    repeated messages.v1.Text scheduled_messages = 2;
+    map<string, ListOfDirects> direct_messages = 3; //key = accountTO
 }
 
 message ListOfPosts {
-  repeated Post posts = 1;
+    repeated Post posts = 1;
 }
 
 message Post {
-  int64 timestamp = 1;
-  string text = 2;
+    int64 timestamp = 1;
+    string text = 2;
 }
 
 message ListOfDirects {
-  repeated Direct directs = 1;
+    repeated Direct directs = 1;
 }
 
 message Direct {
-  string from = 1;
-  string text = 2;
+    string from = 1;
+    string text = 2;
 }

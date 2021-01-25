@@ -5,6 +5,10 @@ version: v1beta1
 
 plugins:
   - name: go
-    out: internal/pkg/protobuf
+    out: internal/pkg/grpc
     opt: paths=source_relative
     strategy: directory
+
+  - name: go-grpc
+    out: internal/pkg/grpc
+    opt: paths=source_relative
