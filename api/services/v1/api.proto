@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+import "messages/v1/message.proto";
+
+package services.v1;
+option go_package = "pbuf-example/services;services";
+
+message GetDirectMessagesResponse {
+  repeated messages.v1.Direct direct = 1;
+}
+
+message GetDirectMessagesRequest {
+  string account = 1;
+}
+
+message SendDirectMessagesResponse{}
+
+message SendDirectMessagesRequest{
+  messages.v1.Direct message = 1;
+}
+
+service MessagesAPIService {
+  rpc GetDirectMessages(GetDirectMessagesRequest) returns (GetDirectMessagesResponse) {}
+  rpc SendDirectMessages(SendDirectMessagesRequest) returns (SendDirectMessagesResponse) {}
+  //TODO
+  //rpc SubscribeDirectMessages(Account) returns (stream messages.Direct) {}
+}
+
