@@ -1,0 +1,105 @@
+name: tests
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  golangci-lint:
+    name: Golang-CI (lint)
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Run linter
+        uses: golangci/golangci-lint-action@v2 # Action page: <https://github.com/golangci/golangci-lint-action>
+        with:
+          version: v1.33 # without patch version
+          only-new-issues: false # show only new issues if it's a pull request
+
+  gitleaks:
+    name: Gitleaks
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check for GitLeaks
+        uses: zricethezav/gitleaks-action@v1.3.0 # Action page: <https://github.com/zricethezav/gitleaks-action>
+
+  goreportcard:
+    name: Update state on goreportcard.com
+    runs-on: ubuntu-20.04
+    if: github.ref == 'refs/heads/main' # only for `main` branch
+    steps:
+      - name: Send update request
+        continue-on-error: true
+        run: curl -X POST -F "repo=github.com/$GITHUB_REPOSITORY" https://goreportcard.com/checks
+
+  go-test:
+    name: Unit tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2 # Fixes codecov error 'Issue detecting commit SHA'
+
+      - name: Go modules Cache # Docs: <https://git.io/JfAKn#go---modules>
+        uses: actions/cache@v2
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: ${{ runner.os }}-go-
+
+      - name: Install Go dependencies
+        run: go mod download
+
+      - name: Run Unit tests
+        run: go test -race -covermode=atomic -coverprofile /tmp/coverage.txt ./...
+
+      - name: Upload Coverage report to CodeCov
+        continue-on-error: true
+        uses: codecov/codecov-action@v1 # https://github.com/codecov/codecov-action
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: /tmp/coverage.txt
+  buf-lint:
+    name: lint protobuf files
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15
+
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Setup buf
+        run: go get
+          github.com/bufbuild/buf/cmd/buf
+          github.com/bufbuild/buf/cmd/protoc-gen-buf-breaking
+          github.com/bufbuild/buf/cmd/protoc-gen-buf-lint
+
+      - name: lint protofiles
+        run: make buf-lint
+
+      - name: detect bracking changes
+        run: make buf-breaking

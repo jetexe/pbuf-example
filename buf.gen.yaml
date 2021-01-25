@@ -1,0 +1,10 @@
+# The version of the generation template.
+# Required.
+# The only currently-valid value is v1beta1
+version: v1beta1
+
+plugins:
+  - name: go
+    out: internal/pkg/protobuf
+    opt: paths=source_relative
+    strategy: directory
